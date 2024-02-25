@@ -8,11 +8,12 @@ on:
 run-name: 'Java strategy matrix, branch [${{ github.ref_name }}]'
 
 jobs:
-  build_strategy_matrix:
+  build_matrix:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
         java_version: [17, 21]
+
     runs-on: ${{ matrix.os }}
 
     steps:
