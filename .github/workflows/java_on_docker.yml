@@ -11,7 +11,7 @@ jobs:
   build_on_docker:
     runs-on: ubuntu-latest
     container:
-      image: 3.9.6-amazoncorretto-17
+      image: 3.9.6-amazoncorretto-17-debian
     steps:
     - name: Check out code
       uses: actions/checkout@v4
