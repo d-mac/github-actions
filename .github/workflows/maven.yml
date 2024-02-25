@@ -5,6 +5,8 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+run-name: 'Java CI with Maven, branch [${{ github.ref_name }}]'
+
 jobs:
   build:
     runs-on: ubuntu-latest
