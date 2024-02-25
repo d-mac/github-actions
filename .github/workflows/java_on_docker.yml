@@ -1,0 +1,24 @@
+name: Java on Docker
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+run-name: 'Java on Docker, branch [${{ github.ref_name }}]'
+
+jobs:
+  build_on_docker:
+    runs-on: ubuntu-latest
+    container:
+      image: 3.9.6-amazoncorretto-17
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+    - name: Build with Maven
+      run: mvn -B package
+    - name: Upload JUnit Test Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: junit-test-results
+        path: target/surefire-reports/*.txt
