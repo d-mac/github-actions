@@ -1,0 +1,17 @@
+name: "Call Reusable Java CI Workflow"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  display-test-count:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Java CI Action
+        uses: ./.github/actions/java-ci-action
+        with:
+          java-version: 17
+        id: java-ci
+        

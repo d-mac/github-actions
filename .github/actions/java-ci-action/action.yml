@@ -1,0 +1,32 @@
+name: "Java CI Action"
+description: "Builds Java project and runs tests"
+inputs:
+  java-version:
+    description: "Java version to use"
+    required: true
+outputs:
+  test-count:
+    description: "Number of tests run"
+    test-count: ${{ steps.run-tests.outputs.test-count }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: ${{ inputs.java-version }}
+
+    - name: Build with Maven
+      run: mvn clean install
+
+    - name: Run tests
+      id: run-tests
+      run: |
+        mvn test | tee test-results.txt
+        tests_count=$(grep -oP '(?<=Tests run: )\d+' test-results.txt)
+        echo "test-count=$tests_count" >> $GITHUB_OUTPUT
