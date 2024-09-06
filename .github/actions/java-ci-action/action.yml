@@ -7,7 +7,7 @@ inputs:
 outputs:
   test-count:
     description: "Number of tests run"
-    test-count: ${{ steps.run-tests.outputs.test-count }}
+    value: ${{ steps.run-tests.outputs.test-count }}
 
 runs:
   using: "composite"
@@ -22,10 +22,12 @@ runs:
         java-version: ${{ inputs.java-version }}
 
     - name: Build with Maven
+      shell: bash
       run: mvn clean install
 
     - name: Run tests
       id: run-tests
+      shell: bash
       run: |
         mvn test | tee test-results.txt
         tests_count=$(grep -oP '(?<=Tests run: )\d+' test-results.txt)
