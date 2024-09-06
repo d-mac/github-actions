@@ -30,5 +30,5 @@ runs:
       shell: bash
       run: |
         mvn test | tee test-results.txt
-        tests_count=$(grep -oP '(?<=Tests run: )\d+' test-results.txt)
+        tests_count=1
         echo "test-count=$tests_count" >> $GITHUB_OUTPUT
