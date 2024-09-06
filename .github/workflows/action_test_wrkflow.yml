@@ -9,6 +9,9 @@ jobs:
   display-test-count:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Run Java CI Action
         uses: './.github/actions/java-ci-action'
         with:
