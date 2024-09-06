@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Java CI Action
-        uses: ./.github/actions/java-ci-action
+        uses: './.github/actions/java-ci-action'
         with:
           java-version: 17
         id: java-ci
-        
+
